@@ -1,13 +1,15 @@
 import React from "react";
-import "./App.css";
-import InputTest from "./component/InputTest";
+import ColorBox from "./contextAPI/ColorBox";
+import { ColorProvider } from "./contextAPI/color";
+import SelectColors from "./contextAPI/SelectColors";
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <InputTest />
-    </div>
+    <ColorProvider>
+      <div className="App">
+        <SelectColors />
+        <ColorBox />
+      </div>
+    </ColorProvider>
   );
 }
-
-export default App;
