@@ -1,15 +1,26 @@
 import React from "react";
-import ColorBox from "./contextAPI/ColorBox";
-import { ColorProvider } from "./contextAPI/color";
-import SelectColors from "./contextAPI/SelectColors";
+import Add from "./todoContextAPI/Add";
+import List from "./todoContextAPI/List";
+import Todo from "./todoContextAPI/Todo";
+import { useState } from "./context";
 
-export default function App() {
+function App() {
+  const { toDos, completed } = useState();
   return (
-    <ColorProvider>
-      <div className="App">
-        <SelectColors />
-        <ColorBox />
-      </div>
-    </ColorProvider>
+    <div className="App">
+      <Add />
+      <List name="To do">
+        {toDos.map((todo: any) => (
+          <Todo key={todo.id} id={todo.id} text={todo.text} />
+        ))}
+      </List>
+
+      <List name={completed.length !== 0 ? "Completed" : ""}>
+        {completed.map((todo: any) => (
+          <Todo key={todo.id} id={todo.id} text={todo.id} isCompleted={true} />
+        ))}
+      </List>
+    </div>
   );
 }
+export default App;
